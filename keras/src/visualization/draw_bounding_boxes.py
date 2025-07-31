@@ -44,7 +44,8 @@ def draw_bounding_boxes(
                `(batch_size, num_boxes)` containing the confidence scores for
                each bounding box.
         bounding_box_format: A string specifying the format of the bounding
-            boxes. Refer [keras-io](TODO)
+            boxes. See `keras.utils.bounding_boxes.convert_format` for
+            supported formats.
         class_mapping: A dictionary mapping class IDs (integers) to class labels
             (strings).  Used to display class labels next to the bounding boxes.
             Defaults to None (no labels displayed).
@@ -81,9 +82,9 @@ def draw_bounding_boxes(
         )
 
     class_mapping = class_mapping or {}
-    text_thickness = (
-        text_thickness or line_thickness
-    )  # Default text_thickness if not provided.
+    if text_thickness is None:
+        # Default text_thickness if not provided.
+        text_thickness = line_thickness
     data_format = data_format or backend.image_data_format()
     images_shape = ops.shape(images)
     if len(images_shape) != 4:
