@@ -45,8 +45,9 @@ def plot_bounding_box_gallery(
     Args:
         images: A 4D tensor or NumPy array of images. Shape should be
             `(batch_size, height, width, channels)`.
-        bounding_box_format: The format of the bounding boxes.
-            Refer [keras-io](TODO)
+        bounding_box_format: The format of the bounding boxes. See
+            `keras.utils.bounding_boxes.convert_format` for supported
+            formats.
         y_true: A dictionary containing the ground truth bounding boxes and
             labels. Should have the same structure as the `bounding_boxes`
             argument in `keras.visualization.draw_bounding_boxes`.
@@ -63,9 +64,9 @@ def plot_bounding_box_gallery(
         font_scale: The scale of the font used for labels. Defaults to 1.0.
         text_thickness: The thickness of the bounding box text. Defaults to
             `line_thickness`.
-        class_mapping: A dictionary mapping class IDs to class names.  Used f
-            or both ground truth and predicted boxes if `ground_truth_mapping`
-            and `prediction_mapping` are not provided. Defaults to `None`.
+        class_mapping: A dictionary mapping class IDs to class names. Used for
+            both ground truth and predicted boxes if `ground_truth_mapping` and
+            `prediction_mapping` are not provided. Defaults to `None`.
         ground_truth_mapping:  A dictionary mapping class IDs to class names
             specifically for ground truth boxes. Overrides `class_mapping`
             for ground truth. Defaults to `None`.
@@ -90,9 +91,9 @@ def plot_bounding_box_gallery(
        The output of `keras.visualization.plot_image_gallery`.
 
     Raises:
-        ValueError: If `images` is not a 4D tensor/array or if both `legend` a
-        nd `legend_handles` are specified.
-        ImportError: if matplotlib is not installed
+        ValueError: If `images` is not a 4D tensor/array or if both `legend`
+            and `legend_handles` are specified.
+        ImportError: If matplotlib is not installed.
     """
     if patches is None:
         raise ImportError(
